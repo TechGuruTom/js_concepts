@@ -181,3 +181,25 @@ console.log(generator.next()); // { value: 2, done: false }
 console.log(generator.next()); // { value: 3, done: false }
 console.log(generator.next()); // { value: undefined, done: true }
 ```
+
+
+#### Event Looping
+
+￼![1689836934622](image/readme/1689836934622.png)
+
+
+
+The only place through which tasks can get into the Call Stack and be executed is the Event Loop. His job is to keep up with the tasks.
+
+* Personal — execution of the main JavaScript code on the site (hereinafter we will assume that it has already been executed)
+* Tasks from customers — Render, Microtasks and Tasks
+
+Most likely, personal tasks will be your priority. **Event Loop** agrees with this. It remains to streamline the tasks from the customer. Of course, the first thing that comes to mind is to give each customer a priority and line them up. The second is to determine how exactly the tasks from each customer will be processed — one at a time, all at once, or maybe in groups.
+
+![](https://miro.medium.com/v2/resize:fit:700/1*phgMg0aGjPQ9PObvLO-VZA.jpeg)
+
+Based on this scheme, the entire operation of the **Event Loop** is built. After we started executing a script, a task with the execution of this script is put in the  **Tasks queue** . As this code is executed, we encounter tasks from different customers, which are placed in the appropriate queues. After the task to execute the script (a task from Tasks) is completed, the **Event Loop** goes to **Microtasks** (after the task from Tasks, the Event Loop takes tasks from Microtasks). The **Event Loop** takes tasks from him until they run out. This means that if the time they were added is equal to the time they were executed, then the **Event Loop** will process them indefinitely.
+
+Then it goes to **Render** and performs tasks from it. Tasks from **Render** are optimized by the browser, and if it considers that nothing needs to be redrawn in this cycle, then the **Event Loop** will simply go further. Next, the **Event Loop** again takes tasks from Tasks and asks it for only one, the first task in the queue, transfers it to the CallStack and goes further along the cycle.
+
+If one of the customers did not have tasks, then the **Event Loop** simply goes to the next one. And vice versa, if the tasks take a lot of time for the customer, then the rest of the customers will wait for their turn. And if the tasks from some customer turned out to be endless, then the *Call Stack* overflows, and the browser starts to display an error window.
