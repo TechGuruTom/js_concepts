@@ -1,3 +1,35 @@
+Clean Code Javascript
+
+[toc]
+
+## Line Length
+
+Lines should be _no longer_ than **80 characters** . Lines which go over 80 char should be wrapped after an operator (e.g. comma). The **continuation** line should be _indented_ **two levels** (8 chars).
+
+```javascript
+// Good
+registerNewUser(firstName, lastName, emailAddress, password, preferredLanguage);
+
+// Bad: Continuation line only indented four spaces
+registerNewUser(firstName, lastName, emailAddress, password, preferredLanguage);
+
+registerNewUser(firstName, lastName, emailAddress, password, preferredLanguage);
+```
+
+## Primitive Literals
+
+### Strings
+
+Always use double quotes and span a single line.
+
+```javascript
+// Good
+var message = "Welcome to JayessVille!";
+
+// Bad: Single Quotes
+var message = "single quotes confuse. avoid";
+```
+
 ## Avoid Global Variables
 
 Minimize the use of global variables.
@@ -224,3 +256,42 @@ x == y; // is false because you cannot compare objects.
 The `eval()` function is used to run text as code. In almost all cases, it should not be necessary to use it.
 
 Because it allows arbitrary code to be run, it also represents a security problem.
+
+## Structure and Naming
+
+Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.
+
+Bad
+
+```
+.
+├── controllers
+|   ├── product.js
+|   └── user.js
+├── models
+|   ├── product.js
+|   └── user.js
+```
+
+good
+
+```javascript
+├── product
+
+|   ├── index.js
+|   ├── product.js
+|   └── product.test.js
+├── user
+|   ├── index.js
+|   ├── user.js
+|   └── user.test.js
+```
+
+_Why:_
+
+> Instead of a long list of files, you will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance.
+
+## Code style Guidelines
+
+-   Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
+-   Use `.eslintignore` to exclude files or folders from code style checks.
