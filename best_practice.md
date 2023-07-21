@@ -54,24 +54,24 @@ It is a good coding practice to put all declarations at the top of each script o
 
 This will:
 
--   Give cleaner code
--   Provide a single place to look for local variables
--   Make it easier to avoid unwanted (implied) global variables
--   Reduce the possibility of unwanted re-declarations
+- Give cleaner code
+- Provide a single place to look for local variables
+- Make it easier to avoid unwanted (implied) global variables
+- Reduce the possibility of unwanted re-declarations
 
-    ```javascript
-    // Declare at the beginning
-    let name, email, price, discount, fullPrice;
+  ```javascript
+  // Declare at the beginning
+  let name, email, price, discount, fullPrice;
 
-    // Use later
-    mane = "Tom";
-    age = 26;
+  // Use later
+  mane = "Tom";
+  age = 26;
 
-    price = 19.9;
-    discount = 0.1;
+  price = 19.9;
+  discount = 0.1;
 
-    fullPrice = price - discount;
-    ```
+  fullPrice = price - discount;
+  ```
 
 ## Initialize Variables
 
@@ -79,20 +79,20 @@ It is a good coding practice to initialize variables when you declare them.
 
 This will:
 
--   Give cleaner code
--   Provide a single place to initialize variables
--   Avoid undefined values
+- Give cleaner code
+- Provide a single place to initialize variables
+- Avoid undefined values
 
-    ```javascript
-    // Declare and initiate at the beginning
-    let firstName = "";
-    let lastName = "";
-    let price = 0;
-    let discount = 0;
-    let fullPrice = 0,
-    const myArray = [];
-    const myObject = {};
-    ```
+  ```javascript
+  // Declare and initiate at the beginning
+  let firstName = "";
+  let lastName = "";
+  let price = 0;
+  let discount = 0;
+  let fullPrice = 0,
+  const myArray = [];
+  const myObject = {};
+  ```
 
 ## Declare Objects with **const**
 
@@ -124,13 +124,13 @@ cars = 3; // Not possible
 
 ## Don't Use new Object()
 
--   Use `""` instead of `new String()`
--   Use `0` instead of `new Number()`
--   Use `false` instead of `new Boolean()`
--   Use `{}` instead of `new Object()`
--   Use `[]` instead of `new Array()`
--   Use `/()/` instead of `new RegExp()`
--   Use `function (){}` instead of `new Function()`
+- Use `""` instead of `new String()`
+- Use `0` instead of `new Number()`
+- Use `false` instead of `new Boolean()`
+- Use `{}` instead of `new Object()`
+- Use `[]` instead of `new Array()`
+- Use `/()/` instead of `new RegExp()`
+- Use `function (){}` instead of `new Function()`
 
 ```javascript
 let x1 = ""; // new primitive string
@@ -293,5 +293,26 @@ _Why:_
 
 ## Code style Guidelines
 
--   Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
--   Use `.eslintignore` to exclude files or folders from code style checks.
+- Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
+- Use `.eslintignore` to exclude files or folders from code style checks.
+
+
+## Use searchable names
+
+We will read more code than we will ever write. It's important that the code we do write is readable and searchable. By *not* naming variables that end up being meaningful for understanding our program, we hurt our readers. Make your names searchable. Tools like [buddy.js](https://github.com/danielstjules/buddy.js) and [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md) can help identify unnamed constants.
+
+Bad
+
+```
+// What the heck is 86400000 for?
+setTimeout(blastOff, 86400000);
+```
+
+Good
+
+```
+// Declare them as capitalized named constants.
+const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
+
+setTimeout(blastOff, MILLISECONDS_PER_DAY);
+```
