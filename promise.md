@@ -1,3 +1,5 @@
+# Promises
+
 Promises are a powerful feature in JavaScript for handling asynchronous operations. They provide a way to deal with the results (fulfillment) or errors (rejection) of asynchronous operations in a more structured and manageable manner. Promises were introduced in ECMAScript 6 (ES6) and have become an integral part of modern JavaScript development. Here's how promises work:
 
 **1. Creating a Promise:**
@@ -53,8 +55,8 @@ If any promise in the chain is rejected, the execution jumps to the nearest `cat
 **5. Promise.all and Promise.race:**
 `Promise.all` and `Promise.race` are useful utility methods for dealing with multiple promises simultaneously.
 
--   `Promise.all`: It takes an array of promises and returns a new promise that fulfills with an array of resolved values when all the promises in the array are fulfilled. If any promise in the array is rejected, the entire `Promise.all` call is rejected.
--   `Promise.race`: It takes an array of promises and returns a new promise that fulfills or rejects as soon as any of the promises in the array fulfill or reject. The result will be the value or reason of the first promise that settles.
+- `Promise.all`: It takes an array of promises and returns a new promise that fulfills with an array of resolved values when all the promises in the array are fulfilled. If any promise in the array is rejected, the entire `Promise.all` call is rejected.
+- `Promise.race`: It takes an array of promises and returns a new promise that fulfills or rejects as soon as any of the promises in the array fulfill or reject. The result will be the value or reason of the first promise that settles.
 
 Example using `Promise.all`:
 
